@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#070b18">
+<title>AURORA — Open World Casino</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#070b18;color:#fff;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,sans-serif;touch-action:none;user-select:none}canvas{display:block;width:100%;height:100%;touch-action:none}
+#ui{position:fixed;inset:0;pointer-events:none}.panel{background:linear-gradient(135deg,#0b1023eF,#11182ad9);border:1px solid #ffffff35;box-shadow:0 8px 30px #0007;backdrop-filter:blur(12px);border-radius:14px}.profile{position:absolute;top:calc(env(safe-area-inset-top) + 10px);left:10px;padding:10px 13px;display:flex;align-items:center;gap:10px;min-width:190px}.crown{font-size:25px;color:#ffd78a}.name{font-weight:850;font-size:14px}.level{font-size:10px;color:#c3cbe0}.bar{height:5px;background:#ffffff20;border-radius:6px;margin-top:6px;width:115px;overflow:hidden}.bar i{display:block;width:38%;height:100%;background:linear-gradient(90deg,#ffbf5c,#fff0b0)}.money{position:absolute;top:calc(env(safe-area-inset-top) + 10px);right:10px;padding:12px 14px;color:#ffdc8a;font-weight:900;font-size:16px}.minimap{position:absolute;right:12px;top:calc(env(safe-area-inset-top) + 70px);width:92px;height:92px;border-radius:50%;border:2px solid #ffffff66;background:#111a2cbb;display:grid;place-items:center;font-size:25px;box-shadow:0 0 22px #0008}.mission{position:absolute;top:calc(env(safe-area-inset-top) + 76px);left:10px;max-width:58%;padding:9px 11px;font-size:11px;color:#e9edf9}.mission b{color:#ffd78a;display:block;font-size:10px;letter-spacing:1px;margin-bottom:3px}.leftmenu{position:absolute;left:10px;top:calc(env(safe-area-inset-top) + 145px);display:flex;flex-direction:column;gap:6px;pointer-events:auto}.menuBtn{border:1px solid #ffffff25;border-radius:10px;background:#090e20d9;color:#fff;padding:10px 12px;min-width:135px;text-align:left;font-weight:800;font-size:11px;backdrop-filter:blur(10px);touch-action:manipulation}.menuBtn span{display:inline-block;width:24px;color:#ffdc8a;font-size:15px}.rightControls{position:absolute;right:14px;bottom:calc(env(safe-area-inset-bottom) + 24px);display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:auto}.round{width:57px;height:57px;border-radius:50%;border:1px solid #ffffff45;background:#151b2dcc;color:#fff;font-size:23px;box-shadow:0 4px 20px #0008;touch-action:manipulation}.action{width:104px;height:104px;border-radius:50%;border:1px solid #ffe6a477;background:linear-gradient(145deg,#ffd985ee,#9d6b29ee);color:#241605;font-size:15px;font-weight:1000;box-shadow:0 0 25px #ffbf4b50;touch-action:manipulation}.action small{display:block;font-size:10px;margin-top:4px}.stick{position:absolute;left:18px;bottom:calc(env(safe-area-inset-bottom) + 24px);width:130px;height:130px;border-radius:50%;border:1px solid #ffffff70;background:#0d152d88;box-shadow:inset 0 0 20px #0005;pointer-events:auto;touch-action:none}.nub{position:absolute;left:39px;top:39px;width:50px;height:50px;border-radius:50%;background:linear-gradient(145deg,#f6f3eb,#aaaebd);border:1px solid #fff;box-shadow:0 3px 18px #0008;pointer-events:none}.games{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom) + 13px);display:flex;gap:5px;pointer-events:auto;max-width:calc(100% - 175px);overflow-x:auto;padding:4px;scrollbar-width:none}.games::-webkit-scrollbar{display:none}.gameCard{flex:0 0 80px;border:1px solid #6cc9f899;border-radius:9px;background:linear-gradient(145deg,#131b30f5,#080d1cf5);padding:7px 3px 6px;text-align:center;color:#fff;font-size:9px;font-weight:900;box-shadow:0 5px 20px #0008;touch-action:manipulation}.gameCard .emoji{display:block;font-size:24px;margin-bottom:4px}.gameCard:active,.menuBtn:active,.round:active{transform:scale(.97)}#toast{position:absolute;top:45%;left:50%;transform:translate(-50%,-50%);background:#0a1024ed;border:1px solid #ffdc8a88;border-radius:12px;padding:12px 16px;text-align:center;font-size:13px;max-width:85%;display:none;box-shadow:0 10px 30px #0008}#modal{display:none;position:fixed;inset:0;z-index:10;background:#02050bdc;align-items:center;justify-content:center;padding:16px;pointer-events:auto}.dialog{width:min(440px,100%);background:linear-gradient(145deg,#17223a,#080d1c);border:1px solid #ffdc8a99;border-radius:20px;padding:18px;box-shadow:0 0 50px #e9ad4830;text-align:center}.dialog h2{margin:0 0 4px;color:#ffdc8a}.dialog p{font-size:12px;color:#c8d2e9}.screen{background:#050a15;border:1px solid #ffffff22;border-radius:14px;min-height:150px;padding:16px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px}.big{font-size:38px}.res{min-height:20px;color:#ffdc8a;font-weight:800;font-size:13px}.btn{padding:12px 16px;border-radius:11px;border:1px solid #ffffff44;background:#1c2b46;color:#fff;font-weight:900;touch-action:manipulation}.gold{background:linear-gradient(135deg,#ffe6a2,#d69a3b);color:#261705;border:0}.close{margin-top:12px;width:100%}.hint{font-size:10px;color:#bac4dd;margin-top:9px}
+@media(max-width:600px){.minimap{width:64px;height:64px;font-size:18px;top:calc(env(safe-area-inset-top) + 72px)}.mission{top:calc(env(safe-area-inset-top) + 78px);max-width:53%;font-size:10px}.leftmenu{top:calc(env(safe-area-inset-top) + 145px)}.menuBtn{min-width:112px;padding:8px;font-size:10px}.stick{width:112px;height:112px;left:12px}.nub{left:32px;top:32px;width:46px;height:46px}.action{width:86px;height:86px;font-size:13px}.round{width:46px;height:46px}.rightControls{right:10px;gap:8px}.games{max-width:calc(100% - 145px);bottom:calc(env(safe-area-inset-bottom) + 8px)}.gameCard{flex-basis:67px;font-size:8px}.gameCard .emoji{font-size:21px}.profile{min-width:160px}.money{font-size:14px;padding:12px 10px}}
+</style>
+</head>
+<body>
+<canvas id="world"></canvas>
+<div id="ui">
+ <div class="profile panel"><div class="crown">♛</div><div><div class="name">Lucas</div><div class="level">NIVEAU 1 · VIP AURORA</div><div class="bar"><i></i></div></div></div>
+ <div class="money panel">🪙 <span id="money">1 000</span></div>
+ <div class="mission panel"><b>OBJECTIF ACTUEL</b><span id="missionText">Explore la place et approche-toi du casino.</span></div>
+ <div class="minimap">⌖</div>
+ <div class="leftmenu">
+  <button class="menuBtn" data-menu="casino"><span>♠</span> CASINO</button>
+  <button class="menuBtn" data-menu="shop"><span>♜</span> BOUTIQUE</button>
+  <button class="menuBtn" data-menu="cars"><span>🚘</span> VÉHICULES</button>
+  <button class="menuBtn" data-menu="home"><span>⌂</span> APPARTEMENT</button>
+  <button class="menuBtn" data-menu="missions"><span>✦</span> MISSIONS</button>
+ </div>
+ <div class="stick" id="stick"><div class="nub" id="nub"></div></div>
+ <div class="games">
+  <button class="gameCard" data-game="slots"><span class="emoji">🎰</span>MACHINES À SOUS</button>
+  <button class="gameCard" data-game="blackjack"><span class="emoji">🂡</span>BLACKJACK</button>
+  <button class="gameCard" data-game="roulette"><span class="emoji">🎡</span>ROULETTE</button>
+  <button class="gameCard" data-game="dice"><span class="emoji">🎲</span>DÉS</button>
+  <button class="gameCard" data-game="wheel"><span class="emoji">🎯</span>ROUE BONUS</button>
+  <button class="gameCard" data-game="scratch"><span class="emoji">✨</span>À GRATTER</button>
+ </div>
+ <div class="rightControls"><button class="round" id="run" aria-label="Courir">🏃</button><button class="round" id="phone" aria-label="Téléphone">▣</button><button class="action" id="interact">✋<small>INTERAGIR</small></button></div>
+ <div id="toast"></div>
+</div>
+<div id="modal"><div class="dialog"><h2 id="dlgTitle">Mini-jeu</h2><p id="dlgDesc">Jetons virtuels uniquement.</p><div class="screen" id="screen"></div><div class="hint">Jetons fictifs uniquement — aucun argent réel.</div><button class="btn close" id="close">← RETOURNER EN VILLE</button></div></div>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),canvas=$('world');
+let scene,camera,renderer,clock,player,avatar,worldReady=false,coins=1000,moveX=0,moveY=0,joyId=null,runMode=false,activeGame=null,cameraYaw=0,cameraPitch=0.12,cameraTouch=null,lastCamX=0,lastCamY=0;
+const kiosks=[],decor=[],keys={};let toastTimer;
+const mat=(color,rough=.7,metal=0)=>new THREE.MeshStandardMaterial({color,roughness:rough,metalness:metal});
+const mats={asphalt:mat(0x222a38,.32,.35),stone:mat(0x9aa0a8,.3,.12),gold:mat(0xd6a34f,.28,.65),glass: new THREE.MeshPhysicalMaterial({color:0x4a8eaa,roughness:.13,metalness:.45,transparent:true,opacity:.56}),darkglass:new THREE.MeshPhysicalMaterial({color:0x111b2b,roughness:.16,metalness:.5}),palm:mat(0x224a3d),leaf:mat(0x226d50),white:mat(0xe6e8ed,.35),pink:mat(0xff39b7,.22,.3),cyan:mat(0x32dfff,.2,.35),black:mat(0x10141c,.4,.25),skin:mat(0xc99470),hood:mat(0x151a25,.82),pants:mat(0x242b38,.85)};
+function box(parent,w,h,d,material,x,y,z){const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;parent.add(o);return o}
+function cylinder(parent,rt,rb,h,material,x,y,z,segments=16){const o=new THREE.Mesh(new THREE.CylinderGeometry(rt,rb,h,segments),material);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;parent.add(o);return o}
+function glow(color,intensity=2){return new THREE.MeshStandardMaterial({color,emissive:color,emissiveIntensity:intensity,roughness:.3,metalness:.2})}
+function textSprite(text,color='#ffe1a0'){const c=document.createElement('canvas');c.width=512;c.height=128;const x=c.getContext('2d');x.fillStyle='rgba(5,10,20,.88)';x.fillRect(0,0,512,128);x.strokeStyle=color;x.lineWidth=5;x.strokeRect(4,4,504,120);x.font='bold 42px system-ui';x.textAlign='center';x.fillStyle=color;x.fillText(text,256,80);const tex=new THREE.CanvasTexture(c);const m=new THREE.MeshBasicMaterial({map:tex,transparent:true,side:THREE.DoubleSide});const o=new THREE.Mesh(new THREE.PlaneGeometry(4.3,1.08),m);return o}
+function init(){
+ if(!window.THREE){$('missionText').textContent='Le moteur 3D ne se charge pas. Ouvre ce jeu avec une connexion internet.';return}
+ scene=new THREE.Scene();scene.background=new THREE.Color(0x081326);scene.fog=new THREE.FogExp2(0x081326,.012);
+ camera=new THREE.PerspectiveCamera(62,innerWidth/innerHeight,.1,220);
+ renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
+ clock=new THREE.Clock();
+ scene.add(new THREE.HemisphereLight(0x9ebfff,0x1c1a24,2.05));
+ const moon=new THREE.DirectionalLight(0xffd9ae,3.1);moon.position.set(-15,26,12);moon.castShadow=true;moon.shadow.mapSize.set(2048,2048);moon.shadow.camera.left=-35;moon.shadow.camera.right=35;moon.shadow.camera.top=35;moon.shadow.camera.bottom=-35;scene.add(moon);
+ const floor=box(scene,120,.6,120,mats.asphalt,0,-.45,0);floor.receiveShadow=true;
+ // large glossy stone plaza with tile joints
+ for(let x=-24;x<=24;x+=3)for(let z=-24;z<=24;z+=3){const tile=box(scene,2.94,.035,2.94,((x+z)%2===0)?mat(0x454a57,.24,.25):mat(0x343b4a,.2,.3),x,-.12,z);tile.castShadow=false}
+ const grid=new THREE.GridHelper(90,45,0x34485e,0x29394e);grid.position.y=-.09;scene.add(grid);
+ // distant skyline
+ for(let i=0;i<44;i++){const a=i/44*Math.PI*2,r=37+(i%5)*2.7,x=Math.cos(a)*r,z=Math.sin(a)*r,h=5+(i*17%15);const b=box(scene,3+(i%3),h,3+(i%4),i%4===0?mats.glass:mats.darkglass,x,h/2-.2,z);for(let yy=1;yy<h-1;yy+=1.6)for(let xx=-.8;xx<1;xx+=1.1){box(scene,.22,.42,.04,glow(i%2?0x43cfff:0xffb65c,.55),x+xx,yy,z-1.52)}}
+ // casino main building, glass frontage and illuminated architectural ribs
+ box(scene,22,8,7,mat(0x171d2b,.32,.42),0,3.8,-18);
+ box(scene,20,5.6,.22,mats.glass,0,3.25,-14.35);
+ for(let x=-10;x<=10;x+=2.5){box(scene,.16,6,.28,glow(x%2?0x2bdfff:0xffb94f,1.7),x,3.3,-14.15)}
+ box(scene,22,.35,8,mats.gold,0,7.85,-18);
+ box(scene,22,.3,8,glow(0xffa73d,1.6),0,8.15,-18);
+ const sign=textSprite('A U R O R A  CASINO','#ffe1a0');sign.position.set(0,5.7,-14);scene.add(sign);
+ // entry stairs
+ for(let i=0;i<4;i++)box(scene,9,.18,1.1,mat(0x777e8c,.28,.22),0,.08+i*.17,-11.7+i*.8);
+ // side shops
+ for(let side of [-1,1]){const x=side*14;box(scene,7,5,6,mat(0x252638,.35,.3),x,2.2,-8);box(scene,6.4,3.4,.15,mats.glass,x,2.2,-4.9);for(let xx=-2.7;xx<=2.8;xx+=1.8)box(scene,.12,3.5,.2,glow(side<0?0xff4dbb:0x47dcff,1.5),x+xx,2.2,-4.7);const s=textSprite(side<0?'LOUNGE VIP':'BOUTIQUE','#ffe0a0');s.position.set(x,4.2,-4.7);scene.add(s)}
+ // landscaped planters, palm trees, fountains
+ function palm(x,z){cylinder(scene,.24,.4,5,mat(0x6d4d35),x,2.45,z,10);for(let i=0;i<8;i++){const a=i*Math.PI/4;const leaf=box(scene,.18,.12,2.8,mats.leaf,x+Math.cos(a)*1.05,4.65,z+Math.sin(a)*1.05);leaf.rotation.y=-a;leaf.rotation.x=-.32}const p=box(scene,2.5,.35,2.5,mat(0x1b2b2b),x,.05,z);p.castShadow=false}
+ for(const [x,z] of [[-10,-5],[10,-5],[-8,3],[8,3],[-15,5],[15,5]]){box(scene,3,.45,3,mat(0x202e2e),x,.03,z);for(let i=0;i<5;i++){const shrub=cylinder(scene,.32,.45,.65,mat(i%2?0x286248:0x1c503e),x+(Math.random()-.5)*1.8,.5,z+(Math.random()-.5)*1.8,8)}}
+ [[-10,-4],[10,-4],[-8,4],[8,4],[-16,4],[16,4]].forEach(palm);
+ // fountain in front left
+ cylinder(scene,2.1,2.4,.45,mat(0x9da6b2,.22,.4),-5,0,-7,48);cylinder(scene,1.7,1.8,.5,mat(0x263d52,.12,.5),-5,.32,-7,48);cylinder(scene,.25,.38,1.7,mat(0xabb7c8,.2,.45),-5,1.1,-7,20);
+ for(let i=0;i<10;i++){const a=i/10*Math.PI*2;const jet=cylinder(scene,.045,.06,1.5,glow(0x5ceaff,.65),-5+Math.cos(a)*1.15,1,-7+Math.sin(a)*1.15,8);jet.rotation.z=Math.cos(a)*-.35;jet.rotation.x=Math.sin(a)*.35}
+ // sports cars, stylized realistic low-poly bodies
+ function car(x,z,color){const g=new THREE.Group();g.position.set(x,.15,z);scene.add(g);box(g,2.2,.48,4,mat(color,.22,.55),0,.55,0);box(g,1.55,.62,1.8,mat(0x101c2b,.12,.5),0,1.05,-.15);box(g,1.9,.16,1.1,glow(color,.7),0,.86,1.45);for(const wx of [-1,1])for(const wz of [-1.25,1.25]){cylinder(g,.42,.42,.22,mat(0x0a0b10,.4,.1),wx*1.02,.35,wz,20).rotation.z=Math.PI/2;cylinder(g,.22,.22,.23,mat(0x9ba7b8,.22,.7),wx*1.02,.35,wz,16).rotation.z=Math.PI/2}box(g,1.9,.08,.08,glow(0xff214f,2),0,.7,-1.95);return g}
+ car(-8,7,0xff2ca6);car(-11,10,0x111721);car(8,8,0x1e2a40);
+ // kiosk arcade stands at locations near plaza
+ const data=[['slots','MACHINES À SOUS','🎰',-4,-1,0xff45c9],['blackjack','BLACKJACK','🂡',-1,2,0x40dfff],['roulette','ROULETTE','🎡',3,-1,0xffbd4b],['dice','DÉS COSMIQUES','🎲',6,2,0x8b7bff],['wheel','ROUE BONUS','🎯',-5,4,0x45ffb0],['scratch','JEU À GRATTER','✨',5,5,0xff884c]];
+ for(const [id,name,emoji,x,z,color] of data){const g=new THREE.Group();g.position.set(x,0,z);scene.add(g);box(g,1.65,1.45,1.1,mat(0x182235,.3,.5),0,.8,0);box(g,1.48,.9,.08,glow(color,1.35),0,1.05,.57);box(g,1.18,.62,.08,mat(0x08101d,.2,.4),0,1.05,.64);const label=textSprite(name,color==0xffbd4b?'#ffd77a':'#a5f4ff');label.scale.set(.9,.22,1);label.position.set(0,1.7,.7);g.add(label);const ring=new THREE.Mesh(new THREE.TorusGeometry(1.2,.035,8,40),glow(color,1.4));ring.rotation.x=Math.PI/2;ring.position.y=.03;g.add(ring);kiosks.push({id,name,emoji,x,z,color,mesh:g})}
+ // NPC silhouettes around the plaza
+ for(let i=0;i<19;i++){const x=-9+(i*13%19),z=-2+(i*7%13);if(Math.abs(x)<3&&z<3)continue;const g=new THREE.Group();g.position.set(x,0,z);scene.add(g);cylinder(g,.23,.28,.9,mat([0x272d3b,0x513b43,0x283f4c,0x574b3d][i%4]),0,1,0,10);cylinder(g,.18,.18,.35,mat(0xc38f6d),0,1.62,0,12);box(g,.12,.6,.12,mat(0x191c27),-.17,.55,0);box(g,.12,.6,.12,mat(0x191c27),.17,.55,0);decor.push({g,phase:i});}
+ // player avatar, seen from behind
+ avatar=new THREE.Group();scene.add(avatar);
+ cylinder(avatar,.25,.28,.78,mats.hood,0,1.15,0,12);box(avatar,.58,.55,.3,mats.hood,0,1.45,.04);cylinder(avatar,.19,.19,.26,mats.skin,0,1.95,0,16); // hood-like head
+ const hood=new THREE.Mesh(new THREE.SphereGeometry(.22,16,12),mats.hood);hood.position.set(0,2.04,-.035);avatar.add(hood);
+ box(avatar,.18,.68,.2,mats.pants,-.17,.47,0);box(avatar,.18,.68,.2,mats.pants,.17,.47,0);box(avatar,.2,.13,.32,mat(0x090c12),-.17,.12,.05);box(avatar,.2,.13,.32,mat(0x090c12),.17,.12,.05);
+ box(avatar,.14,.63,.18,mats.hood,-.38,1.42,0);box(avatar,.14,.63,.18,mats.hood,.38,1.42,0);
+ const crown=textSprite('♛','#ffe0a0');crown.scale.set(.23,.12,1);crown.position.set(0,1.47,.205);avatar.add(crown);
+ player={x:0,z:10,yaw:0,targetYaw:0,speed:0};
+ worldReady=true;window.addEventListener('resize',onResize);animate();
+}
+function onResize(){if(!renderer)return;camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)}
+function toast(msg){const t=$('toast');t.textContent=msg;t.style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.style.display='none',2200)}
+function updateMoney(){$('money').textContent=coins.toLocaleString('fr-FR')}
+function nearest(){let b=null,d=Infinity;kiosks.forEach(k=>{const n=Math.hypot(k.x-player.x,k.z-player.z);if(n<d){d=n;b=k}});return {b,d}}
+function angleLerp(a,b,t){let d=((b-a+Math.PI*3)%(Math.PI*2))-Math.PI;return a+d*t}
+function animate(){
+ requestAnimationFrame(animate);if(!worldReady)return;
+ const dt=Math.min(clock.getDelta(),.035), now=performance.now();
+ const speed=runMode?6.2:3.7;
+ let forward=-moveY,side=moveX;
+ for(const k in keys){if(keys[k]){if(k==='w'||k==='ArrowUp')forward=1;if(k==='s'||k==='ArrowDown')forward=-1;if(k==='a'||k==='ArrowLeft')side=-1;if(k==='d'||k==='ArrowRight')side=1}}
+ const mag=Math.hypot(side,forward);
+ if(mag>.08){
+   side/=Math.max(1,mag);forward/=Math.max(1,mag);
+   // Camera-relative input: joystick up always means forward on screen.
+   const cameraYawForMove=cameraYaw;
+   const dirX=Math.cos(cameraYawForMove)*side+Math.sin(cameraYawForMove)*forward;
+   const dirZ=Math.sin(cameraYawForMove)*side-Math.cos(cameraYawForMove)*forward;
+   player.targetYaw=Math.atan2(dirX,-dirZ);
+   player.yaw=angleLerp(player.yaw,player.targetYaw,Math.min(1,dt*11));
+   const step=speed*dt;
+   const nx=player.x+dirX*step,nz=player.z+dirZ*step;
+   // Keep the player inside the plaza; movement and camera remain stable at boundaries.
+   player.x=Math.max(-20,Math.min(20,nx));player.z=Math.max(-14,Math.min(23,nz));
+   avatar.rotation.y=player.yaw;
+   const bob=Math.sin(now*(runMode?.018:.012))*(runMode?.045:.018);
+   avatar.position.set(player.x,Math.abs(bob),player.z);
+ }else{
+   avatar.position.x=player.x;avatar.position.z=player.z;avatar.position.y=0;
+ }
+ // Camera stays centered on the character; orbit angle changes only with right-finger drag.
+ const behind=8.0, focusY=1.35, horizontal=Math.cos(cameraPitch)*behind;
+ const target=new THREE.Vector3(player.x,focusY,player.z);
+ const desired=new THREE.Vector3(
+   player.x-Math.sin(cameraYaw)*horizontal,
+   focusY+Math.sin(cameraPitch)*behind+1.0,
+   player.z+Math.cos(cameraYaw)*horizontal
+ );
+ camera.position.lerp(desired,1-Math.exp(-dt*7.0));
+ camera.lookAt(target);
+ decor.forEach(n=>{n.g.position.y=Math.sin(now*.001+n.phase)*.018});
+ renderer.render(scene,camera);
+ const n=nearest();$('missionText').textContent=n.d<2.7?`Approche-toi : ${n.b.name} — touche INTERAGIR.`:'Explore la place du casino Aurora.';$('interact').style.filter=n.d<2.7?'brightness(1.18)':'';
+}
+const stick=$('stick'),nub=$('nub');
+function joystick(e){const r=stick.getBoundingClientRect(),max=r.width*.31;let dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2),len=Math.hypot(dx,dy);if(len>max){dx*=max/len;dy*=max/len}moveX=dx/max;moveY=dy/max;nub.style.transform=`translate(${dx}px,${dy}px)`}
+function resetJoy(){joyId=null;moveX=moveY=0;nub.style.transform='translate(0,0)'}
+stick.addEventListener('pointerdown',e=>{e.preventDefault();joyId=e.pointerId;try{stick.setPointerCapture(e.pointerId)}catch(_){}joystick(e)});
+stick.addEventListener('pointermove',e=>{if(e.pointerId===joyId){e.preventDefault();joystick(e)}});
+stick.addEventListener('pointerup',e=>{if(e.pointerId===joyId)resetJoy()});stick.addEventListener('pointercancel',resetJoy);stick.addEventListener('lostpointercapture',resetJoy);window.addEventListener('blur',resetJoy);
+window.addEventListener('keydown',e=>{keys[e.key]=true});window.addEventListener('keyup',e=>{keys[e.key]=false});
+// Right-side swipe rotates only the camera. Character remains still unless joystick is used.
+function overControl(el){return !!(el&&el.closest&&el.closest('button,.stick,.games,.leftmenu,.rightControls,#modal'))}
+window.addEventListener('pointerdown',e=>{
+ if(e.pointerType==='mouse'&&e.button!==0)return;
+ if(e.clientX<innerWidth*.42||overControl(e.target))return;
+ cameraTouch=e.pointerId;lastCamX=e.clientX;lastCamY=e.clientY;
+},{passive:true});
+window.addEventListener('pointermove',e=>{
+ if(cameraTouch!==e.pointerId)return;
+ const dx=e.clientX-lastCamX,dy=e.clientY-lastCamY;lastCamX=e.clientX;lastCamY=e.clientY;
+ cameraYaw-=dx*.007;
+ cameraPitch=Math.max(-.12,Math.min(.42,cameraPitch+dy*.0025));
+},{passive:true});
+function endCameraTouch(e){if(cameraTouch===e.pointerId)cameraTouch=null}
+window.addEventListener('pointerup',endCameraTouch);window.addEventListener('pointercancel',endCameraTouch);
+$('run').addEventListener('pointerdown',e=>{e.preventDefault();runMode=true});$('run').addEventListener('pointerup',()=>runMode=false);$('run').addEventListener('pointercancel',()=>runMode=false);
+$('phone').onclick=()=>toast('Téléphone Aurora : bientôt disponible.');
+function openGame(id){const names={slots:'Machines à sous',blackjack:'Blackjack',roulette:'Roulette',dice:'Dés cosmiques',wheel:'Roue bonus',scratch:'Jeu à gratter'};activeGame=id;$('dlgTitle').textContent=names[id]||'Aurora';$('dlgDesc').textContent='Mise de 50 jetons virtuels';$('modal').style.display='flex';renderGame(id)}
+function renderGame(id){const s=$('screen');if(id==='slots'){s.innerHTML='<div class="big" id="reels">🍒 ⭐ 💎</div><div class="res" id="res">Aligne les symboles !</div><button class="btn gold" id="play">LANCER · 50 🪙</button>';byId('play').onclick=()=>{if(!bet())return;const a=['🍒','⭐','💎','7️⃣','🔔','🍀'];const r=[pick(a),pick(a),pick(a)];byId('reels').textContent=r.join(' ');const n=r[0]===r[1]&&r[1]===r[2]?500:(r[0]===r[1]||r[1]===r[2]||r[0]===r[2]?100:0);if(n)win(n);byId('res').textContent=n?'Gagné : +'+n+' jetons !':'Pas cette fois !'}}
+ else if(id==='blackjack'){let total=0;s.innerHTML='<div class="big">🂡 ♥️ ♠️</div><div class="res" id="res">Tire des cartes sans dépasser 21.</div><div><button class="btn gold" id="draw">TIRER · 50 🪙</button> <button class="btn" id="stay">RESTER</button></div><div id="total">Total : 0</div>';byId('draw').onclick=()=>{if(!bet())return;total+=1+Math.random()*11|0;byId('total').textContent='Total : '+total;if(total>21){byId('res').textContent='Dépassé ! Nouvelle main.';total=0;byId('total').textContent='Total : 0'}else if(total===21){win(250);byId('res').textContent='21 parfait ! +250';total=0;byId('total').textContent='Total : 0'}};byId('stay').onclick=()=>{if(total>=15){win(100);byId('res').textContent='Bien joué, +100 !'}else byId('res').textContent='Le croupier gagne.';total=0;byId('total').textContent='Total : 0'}}
+ else if(id==='roulette'){s.innerHTML='<div class="big">🎡</div><div class="res" id="res">Choisis une couleur.</div><button class="btn gold" id="red">🔴 ROUGE</button> <button class="btn" id="black">⚫ NOIR</button>';const go=c=>{if(!bet())return;if(Math.random()<.47){win(100);byId('res').textContent='Gagné : +100 !'}else byId('res').textContent='Raté !';};byId('red').onclick=()=>go('rouge');byId('black').onclick=()=>go('noir')}
+ else if(id==='dice'){s.innerHTML='<div class="big" id="dice">🎲 🎲</div><div class="res" id="res">Double = gros gain !</div><button class="btn gold" id="play">LANCER LES DÉS · 50</button>';byId('play').onclick=()=>{if(!bet())return;let a=1+Math.random()*6|0,b=1+Math.random()*6|0;byId('dice').textContent=`${a} 🎲 ${b}`;if(a===b){win(250);byId('res').textContent='Double ! +250'}else if(a+b>=9){win(100);byId('res').textContent='Bien joué ! +100'}else byId('res').textContent='Perdu, retente !'}}
+ else if(id==='wheel'){s.innerHTML='<div class="big" id="wheel">🎯</div><div class="res" id="res">Fais tourner la roue.</div><button class="btn gold" id="play">TOURNER · 50</button>';byId('play').onclick=()=>{if(!bet())return;const v=[0,50,100,200,500][Math.random()*5|0];byId('wheel').textContent=['✨','💎','⭐','🎁','👑'][[0,50,100,200,500].indexOf(v)];if(v)win(v);byId('res').textContent=v?'Gagné : +'+v:'Rien cette fois !'}}
+ else{s.innerHTML='<div class="big" id="scr">❔ ❔ ❔</div><div class="res" id="res">Trouve des symboles identiques.</div><button class="btn gold" id="play">GRATTER · 50</button>';byId('play').onclick=()=>{if(!bet())return;const a=['🍀','💎','🌙','⭐','🍒'],r=[pick(a),pick(a),pick(a)];byId('scr').textContent=r.join(' ');if(r[0]===r[1]||r[1]===r[2]||r[0]===r[2]){win(150);byId('res').textContent='Combo ! +150'}else byId('res').textContent='Pas de combo !'}}
+}
+function byId(id){return document.getElementById(id)}function pick(a){return a[Math.random()*a.length|0]}function bet(){if(coins<50){toast('Pas assez de jetons !');return false}coins-=50;updateMoney();return true}function win(n){coins+=n;updateMoney()}
+$('interact').onclick=()=>{const n=nearest();if(n.d<3.4)openGame(n.b.id);else toast('Approche-toi d’une borne ou utilise les mini-jeux en bas.')}
+document.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>openGame(b.dataset.game));
+document.querySelectorAll('[data-menu]').forEach(b=>b.onclick=()=>{const m=b.dataset.menu;if(m==='casino')toast('Bienvenue au Casino Aurora !');else if(m==='shop')toast('Boutique : nouveaux vêtements bientôt disponibles.');else if(m==='cars')toast('Garage Aurora : véhicules en cours de développement.');else if(m==='home')toast('Appartement VIP : bientôt disponible.');else toast('Mission : visite 3 bornes et joue à un mini-jeu !')});
+$('close').onclick=()=>{$('modal').style.display='none';activeGame=null};$('modal').addEventListener('click',e=>{if(e.target===$('modal'))$('modal').style.display='none'});
+updateMoney();init();
+})();
+</script>
+</body>
+</html>
